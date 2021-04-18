@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'customers/products#top'
 
+
   devise_for :customers, controllers: {
   sessions:      'customers/sessions',
   passwords:     'customers/passwords',
@@ -12,5 +13,9 @@ Rails.application.routes.draw do
   passwords:     'admins/passwords',
   registrations: 'admins/registrations'
   }
+  
+  namespace :admins do
+    resources :categories, except: [:new, :show]
+  end
 
 end
