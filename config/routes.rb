@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   registrations: 'admins/registrations'
   }
 
+  namespace :admins do
+    resources :products, only: [:new, :create, :index, :edit, :update, :show]
+
+  end
 end
