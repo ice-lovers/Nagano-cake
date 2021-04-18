@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   passwords:     'admins/passwords',
   registrations: 'admins/registrations'
   }
-
-  resources :categories, except: [:new, :show]
+  
+  namespace :admins do
+    resources :categories, except: [:new, :show]
+  end
 
 end
