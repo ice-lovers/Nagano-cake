@@ -2,14 +2,27 @@
   <div class="row">
     <h4 class="col-md-3 bg-secondary text-center">ジャンル一覧・追加</h4>
   </div>
-  
-  
-    
-    <%= form_with model:@category, local:true do |f| %>
-      <div class="form-group">
-        <%= f.label :name, "ジャンル名" %>
-        <%= f.text_field :name, autofocus:true %>
-      </div>
-    <% end %>
+
+  <%= form_with model:@category, local:true do |f| %>
+    <div class="form-group row">
+      <%= f.label :name, "ジャンル名", class:"col-2 text-center" %>
+      <%= f.text_field :name, placeholder:"ジャンル名", size: "50", autofocus:true %>
+      <%= f.submit "新規投稿", class:"offset-2 btn btn-success" %>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <table>
+      <tr>
+        <th class="bg-secondary">ジャンル</th>
+      </tr>
+      <% @categories.each do |category| %>
+      <tr>
+        <th><%= category.name %></th>
+        <th><%= link_to "編集する", edit_category_path(category.id), class:"btn btn-success" %></th>
+      </tr>
+      <% end %>
+    </table>
+  </div>
 
 </div>
