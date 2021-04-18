@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   def create
+    @category = category.new
   end
 
   def index
