@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   }
 
   namespace :admins do
+    resources :products, except: [:destroy]
     resources :categories, except: [:new, :show]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders,only: [:index, :show, :update]
