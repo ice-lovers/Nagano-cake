@@ -19,4 +19,9 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
   end
 
+  scope module: :customers do
+    resources :cart_items, except: [:new, :show, :edit]
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+  end
+
 end
