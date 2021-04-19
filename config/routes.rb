@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :categories, except: [:new, :show]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders,only: [:index, :show, :update]
   end
+
 
   scope module: :customers do
     resources :cart_items, except: [:new, :show, :edit]
@@ -25,3 +27,4 @@ Rails.application.routes.draw do
   end
 
 end
+
