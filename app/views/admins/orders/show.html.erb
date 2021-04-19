@@ -22,10 +22,48 @@
 　　
 　　<div class="date">
 　　  <div>支払方法</div>
-　　  <div><%= @order.pay_type%></div>
+　　  <div><%= @order.pay_type %></div>
 　　</div>
 　　
-　　<div class="date">
-　　  <div>注文ステータス</div>
-　　  <div><%=%></div>
-　　</div>
+　　<%= form_with model:@order, url:admins_order_path, method::patch do |f| %>
+      <div class="date">
+    　　<div>注文ステータス</div>
+    　　<%= f.select :order_status, Order.order_statuses.keys, class: "order_status-select" %>
+    　</div>
+    　<div class="action-change">
+    　　<div><%= f.submit "更新", class:"btn btn-success" %></div>
+    　</div>
+    <% end %>
+    
+    <div class="order-breakdown">
+      <table>
+        <thead>
+          <tr class="order-info">
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>制作ステータス</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_details.each do |order_detail| %>
+            <tr>
+              <td><%= order_detail.product.name %></td>
+              <td><%= price %></td>
+              <td><%= order_detail.product.quantity %></td>
+              <td><%= %></td>
+              <td><%= form_with model:@order_details, url:admins_order_details_path, method::patch do |f| %>
+                <%= f.select :production_status, OrderDetail.production_statuses.keys, class: "order_detail_status-select" %>
+              </td>
+              <td><%= f.submit "更新", class:"btn btn-success" %></td>
+              <% end %>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    
+　　
+　
