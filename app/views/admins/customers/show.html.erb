@@ -2,11 +2,11 @@
   <div class="row mb-5">
     <h4 class="col-md-3 offset-1 bg-light text-center"><%= @customer.last_name %><%= @customer.first_name %>の会員詳細</h4>
   </div>
-  
+
   <div class="row">
     <div class="col-8 ">
       <table class="table table-striped">
-        
+
         <tr>
           <th class="text-center">会員ID</th>
           <th><%= @customer.id %></th>
@@ -14,6 +14,10 @@
         <tr>
           <th class="text-center">氏名</th>
           <th><%= @customer.last_name %> <%= @customer.first_name %></th>
+        </tr>
+        <tr>
+          <th class="text-center">フリガナ</th>
+          <th><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></th>
         </tr>
         <tr>
           <th class="text-center">郵便番号</th>
@@ -39,13 +43,13 @@
             <th class="align-middle text-success">有効</th>
           <% end %>
         </tr>
-        
+
       </table>
     </div>
   </div>
   <div class="row">
-    <%= link_to "編集する", admins_customers_path(@customer), class:"offset-4 btn btn-success" %>
+    <%= link_to "編集する", edit_admins_customer_path(@customer), class:"offset-4 btn btn-success" %>
     <%= link_to "注文履歴一覧を見る", admins_orders_path, class:"offset-1 btn btn-info" %>
   </div>
-  
+
 </div>
