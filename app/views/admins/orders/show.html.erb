@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
-　　<h2 class="title">注文履歴詳細</h2>
+    <div class="col-md-9"></div>
+　　<h2 class="mt-5">注文履歴詳細</h2>
 　　
 　　<div class="date">
 　　  <div>購入者</div>
@@ -35,7 +36,8 @@
     　</div>
     <% end %>
     
-    <div class="order-breakdown">
+    <div class="row">
+      <div class="col-8 mx-auto"></div>
       <table>
         <thead>
           <tr class="order-info">
@@ -60,10 +62,24 @@
               <td><%= f.submit "更新", class:"btn btn-success" %></td>
               <% end %>
             </tr>
+          <% end %>
         </tbody>
       </table>
-    </div>
     
+    <!--order_detailを作成後、機能追加-->
+      <div class="col-4 mx-auto">
+        <table>
+          <tr>
+            <th class="text-left">商品合計</th>
+              <td></td>
+            <th class="text-left">送料</th>
+              <td>800</td>
+            <th class="text-left">請求金額合計</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
     
 　　
 　
