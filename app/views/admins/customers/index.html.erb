@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <h4 class="col-md-3 bg-secondary text-center">会員一覧</h4>
+  </div>
+  
+  <div class="row">
+    <div class="col-5">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="text-center">会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <% @costomers.each do |costomer| %>
+        <tr class="border-bottom">
+          <th class="align-middle"><%= costomer.id %></th>
+          <th class="align-middle"><%= costomer.name %></th>
+          <th class="align-middle"><%= costomer.email %></th>
+          <% if costomer.is_deleted %>
+            <th class="align-middle">有効</th>
+          <% else %>
+            <th class="align-middle">退会</th>
+          <% end %>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  
+</div>
