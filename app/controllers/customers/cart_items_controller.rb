@@ -16,4 +16,4 @@ class Customers::CartItemsController < ApplicationController
   def destroy_all
   end
 
-endra
+end
