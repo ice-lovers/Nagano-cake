@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   
   namespace :admins do
     resources :categories, except: [:new, :show]
+    resources :orders,only: [:index, :show, :update]
   end
 
-  resources  :orders,only: [:index, :show, :update]
+
 end 

@@ -4,7 +4,7 @@
       <h2 class="title">注文履歴一覧</h2>
       <table>
         <thead>
-          <tr>
+          <tr class="order-info">
             <th>購入日時</th>
             <th>購入者</th>
             <th>注文個数</th>
@@ -15,9 +15,8 @@
           <% @orders.each do |order| %>
           <tr>
             <td>
-              <%= link_to order_path(order.id), do %>
+              <%= link_to admins_order_path(order.id) %>
               <%= order.created_at %>
-              <% end %>
             </td>
             <td>
               <%= order.customer.name %>

@@ -1,4 +1,31 @@
 <div class="container">
   <div class="row">
 　　<h2 class="title">注文履歴詳細</h2>
-　　div.
+　　
+　　<div class="date">
+　　  <div>購入者</div>
+　　  <div><%= @order.name %></div>
+　　</div>
+　　
+　　<div class="date">
+　　  <div>注文日</div>
+　　  <div><%= @order.created_at %></div>
+　　</div>
+　　
+　　<div class="date">
+　　  <div>配送先</div>
+　　  <div>
+　　    <%= @order.postal_code %><br>
+　　    <%= @order.address %>
+　　  </div>
+　　</div>
+　　
+　　<div class="date">
+　　  <div>支払方法</div>
+　　  <div><%= @order.pay_type%></div>
+　　</div>
+　　
+　　<div class="date">
+　　  <div>注文ステータス</div>
+　　  <div><%=%></div>
+　　</div>
