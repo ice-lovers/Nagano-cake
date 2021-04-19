@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: 'customers/products#top'
 
 
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   }
 
   namespace :admins do
+    resources :products, except: [:destroy]
     resources :categories, except: [:new, :show]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders,only: [:index, :show, :update]
@@ -24,6 +26,10 @@ Rails.application.routes.draw do
   scope module: :customers do
     resources :cart_items, except: [:new, :show, :edit]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+  end
+
+  scope module: :customers do
+    resources :deliveries, except: [:show]
   end
 
 end

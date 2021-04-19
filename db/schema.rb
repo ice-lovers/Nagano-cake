@@ -64,6 +64,13 @@ ActiveRecord::Schema.define(version: 2021_04_19_074623) do
     t.integer "quantity"
     t.integer "production_status", default: 0, null: false
     t.integer "price"
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.integer "customer_id"
+    t.string "name"
+    t.string "address"
+    t.string "postal_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -79,6 +86,17 @@ ActiveRecord::Schema.define(version: 2021_04_19_074623) do
     t.integer "order_status", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.string "name", null: false
+    t.text "detail", null: false
+    t.integer "price", null: false
+    t.boolean "product_status", default: true, null: false
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
