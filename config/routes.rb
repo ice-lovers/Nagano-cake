@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
-  
+
   root to: 'customers/products#top'
 
 
   scope module: :customers do
     get 'about' => 'products#about'
-　end
-  
+  end
+
   scope module: :customers do
     get 'customers/edit', to: 'customers#edit'
     patch 'customers', to: 'customers#update'
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders,only: [:index, :show, :update]
   end
-  
+
   scope module: :customers do
     resources :cart_items, except: [:new, :show, :edit]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
@@ -42,7 +42,17 @@ Rails.application.routes.draw do
 
   scope module: :customers do
     resources :deliveries, except: [:show]
+    resources :orders, only: [:new, :create, :index, :show] do
+      collection do
+        post 'log'
+        get 'thanx'
+      end
+    end
   end
 
-end
+
+  end
+
+
+
 
