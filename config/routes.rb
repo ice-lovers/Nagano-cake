@@ -31,6 +31,10 @@ Rails.application.routes.draw do
   scope module: :customers do
     resources :deliveries, except: [:show]
   end
-
+  
+  scope module: :customers do
+    resources :products, only: [:show, :index]
+  end
+  
 end
 
