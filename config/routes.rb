@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  namespace :customers do
+    get 'customers/show'
+    get 'customers/edit'
+    get 'customers/quit'
+  end
   root to: 'customers/products#top'
 
 
