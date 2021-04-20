@@ -13,4 +13,7 @@ class Customers::ProductsController < ApplicationController
     @cart_item = CartItem.new
   end
   
+  def about
+  end
+
 end
