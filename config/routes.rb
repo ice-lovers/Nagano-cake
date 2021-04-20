@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   root to: 'customers/products#top'
 
+  scope module: :customers do
+    get 'about' => 'products#about'
+  end
 
   devise_for :customers, controllers: {
   sessions:      'customers/sessions',
