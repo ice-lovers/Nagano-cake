@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root to: 'customers/products#top'
 
 
@@ -36,7 +35,7 @@ Rails.application.routes.draw do
     resources :cart_items, except: [:new, :show, :edit]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     get 'customers', to: 'customers#show'
-    get 'customers/quit', to: 'customers#quit'
+    get 'customers/unsubscribe', to: 'customers#unsubscribe'
     patch 'customers/out', to: 'customers#out'
   end
 
@@ -50,9 +49,7 @@ Rails.application.routes.draw do
     end
   end
 
-
+  scope module: :customers do
+    resources :products, only: [:show, :index]
   end
-
-
-
-
+end
