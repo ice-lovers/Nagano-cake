@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
+  
   root to: 'customers/products#top'
-
+  
+  scope module: :customers do
+    get 'customers/edit', to: 'customers#edit'
+    patch 'customers', to: 'customers#update'
+  end
 
   devise_for :customers, controllers: {
   sessions:      'customers/sessions',
@@ -21,11 +26,13 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders,only: [:index, :show, :update]
   end
-
-
+  
   scope module: :customers do
     resources :cart_items, except: [:new, :show, :edit]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+    get 'customers', to: 'customers#show'
+    get 'customers/quit', to: 'customers#quit'
+    patch 'customers/out', to: 'customers#out'
   end
 
   scope module: :customers do
