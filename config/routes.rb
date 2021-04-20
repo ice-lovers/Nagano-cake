@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   scope module: :customers do
     get 'about' => 'products#about'
   end
-  
+
   scope module: :customers do
     get 'customers/edit', to: 'customers#edit'
     patch 'customers', to: 'customers#update'
