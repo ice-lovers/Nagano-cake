@@ -1,2 +1,38 @@
-<h1>Customers::Customers#edit</h1>
-<p>Find me in app/views/customers/customers/edit.html.erb</p>
+<div class="container">
+  <div class="row mb-5">
+    <h4 class="col-md-3 offset-1 bg-light text-center">会員情報編集</h4>
+  </div>
+  
+  <%= form_with model:@customer, url: customers_path, local:true do |f| %>
+    <div class="form-group row mb-5">
+      <%= f.label :name, "氏名", class:"col-2 col-form-label" %>
+      <%= f.text_field :last_name, class:"form-control col-4", autofocus:true %>
+      <%= f.text_field :first_name, class:"offset-1 form-control col-4" %>
+    </div>
+    <div class="form-group row mb-5">
+      <%= f.label :name, "フリガナ", class:"col-2 col-form-label" %>
+      <%= f.text_field :last_name_kana, class:"form-control col-4", autofocus:true %>
+      <%= f.text_field :first_name_kana, class:"offset-1 form-control col-4" %>
+    </div>
+    <div class="form-group row mb-5">
+      <%= f.label :postal_code, "郵便番号", class:"col-2 col-form-label" %>
+      <%= f.text_field :postal_code, class:"form-control col-4", autofocus:true %>
+    </div>
+    <div class="form-group row mb-5">
+      <%= f.label :address, "住所", class:"col-2 col-form-label" %>
+      <%= f.text_field :address, class:"form-control col-10", autofocus:true %>
+    </div>
+    <div class="form-group row mb-5">
+      <%= f.label :telephone_number, "電話番号", class:"col-2 col-form-label" %>
+      <%= f.text_field :telephone_number, class:"form-control col-4", autofocus:true %>
+    </div>
+    <div class="form-group row mb-5">
+      <%= f.label :email, "メールアドレス", class:"col-2 col-form-label" %>
+      <%= f.text_field :email, class:"form-control col-4", autofocus:true %>
+    </div>
+    <div class="row">
+      <%= f.submit "編集内容を保存", class:"offset-1 btn btn-success" %>
+    </div>
+  <% end %>
+  
+</div>
