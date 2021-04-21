@@ -5,7 +5,7 @@ class Customers::CartItemsController < ApplicationController
 
   def index
     @cart_items = current_cart
-    
+
   end
 
   def create
