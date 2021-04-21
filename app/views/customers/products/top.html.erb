@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row mb-2">
     <div class="col-12 main-visual mx-auto d-flex align-items-center">
       <div class="cover-text text-center mx-auto">
 				<p class="text-light font-weight-light h5">
@@ -10,5 +10,22 @@
 				</p>
 			</div>
     </div>
+  </div>
+  <div class="row mb-2">
+    <h2><strong>新着商品</strong></h2>
+  </div>
+  <div class="row">
+    <% @new_arrivals_products.each do |product| %>
+      <div class="col-3 ">
+        <%= link_to product_path(product) do %>
+          <%= attachment_image_tag product, :image, :fill, 250, 250, size: '250x250', fallback: "kanban_jyunbi.png", size:'250x250' %>
+          <p class="font-weight-bold text-secondary"><%= product.name %></p>
+          <p class="font-weight-bold text-secondary">￥<%= product.price.to_s(:delimited, delimiter: ',') %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="row justify-content-end">
+    <p><%= link_to "全ての商品を見る>", products_path %></p>
   </div>
 </div>
