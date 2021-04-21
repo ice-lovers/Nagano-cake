@@ -18,7 +18,13 @@ class Customers::OrdersController < ApplicationController
   def thanx
   end
 
+<<<<<<< HEAD
 private
+=======
+  def index
+    @orders = Order.where(customer_id: current_customer.id)
+  end
+>>>>>>> origin/develop
 
   def order_params
     params.require(:order).permit(:pay_type, :total_price, :postal_code, :address, :name)
