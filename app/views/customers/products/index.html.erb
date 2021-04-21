@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <h3 class="text-left">商品一覧</h3>
-        <div class="d-flex align-items-center">
+      <h3 class="text-left">商品一覧(全<%= @products.total_count %>件)</h3>
+        <div class="d-flex align-items-center ">
         <% @products.each do |product| %>
          <%= link_to product_path(product) do %>
         <div>
           <%= attachment_image_tag product, :image, fallback: "kanban_jyunbi.png", size:'250x250' %> 
         </div>
         <p><%= product.name %></p>
-        <p><%= (product.price.to_i*1.1).round %>円</p>
+        <p><%= (product.price.to_i*1.1).round.to_s(:delimited) %>円</p>
         <% end %>
         <% end %>
         </div>
