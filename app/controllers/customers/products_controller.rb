@@ -5,12 +5,12 @@ class Customers::ProductsController < ApplicationController
 
   def about
   end
-  
+
   PER = 4
   def index
     @products = Product.where(product_status: "true").page(params[:page]).per(PER)
   end
-  
+
   def show
     @product = Product.find(params[:id])
     @cart_item = CartItem.new
