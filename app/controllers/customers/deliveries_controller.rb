@@ -3,7 +3,7 @@ class Customers::DeliveriesController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @deliveries = current_customer.elivery
+    @deliveries = current_customer.delivery
     @delivery = Delivery.new
   end
 
