@@ -6,14 +6,14 @@
         <% @products.each do |product| %>
          <%= link_to product_path(product) do %>
         <div>
-          <%= attachment_image_tag product, :image, fallback: "kanban_jyunbi.png", size:'250x250' %> 
+         <%= attachment_image_tag product, :image, fallback: "kanban_jyunbi.png", size:'250x250' %> 
         </div>
         <p><%= product.name %></p>
         <p><%= (product.price.to_i*1.1).round.to_s(:delimited) %>円</p>
         <% end %>
         <% end %>
         </div>
-        <%= paginate @products %>
+        <div class="text-center"><%= paginate @products %></div>
     </div>
   </div>
  </div>
