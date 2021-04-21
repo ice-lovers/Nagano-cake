@@ -3,14 +3,14 @@ class Customers::DeliveriesController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @deliveries = current_customer.delivery
+    @deliveries = current_customer.deliveries
     @delivery = Delivery.new
   end
 
   def create
     @delivery = Delivery.new(delivery_params)
     @delivery.customer_id = current_customer.id
-    @deliveries = current_customer.delivery
+    @deliveries = current_customer.deliveries
     if @delivery.save
       flash.now[:notice] = "新規配送先を登録しました"
     end
@@ -33,7 +33,7 @@ class Customers::DeliveriesController < ApplicationController
   def destroy
     @delivery = Delivery.find(params[:id])
     @delivery.destroy
-    @deliveries = current_customer.delivery
+    @deliveries = current_customer.deliveries
     flash.now[:alert] = "配送先を削除しました"
   end
 
