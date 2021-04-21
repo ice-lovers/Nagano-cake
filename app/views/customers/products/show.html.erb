@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+        <div>
+         <%= attachment_image_tag @product, :image, fallback: "kanban_jyunbi.png", size:'300x300' %>
+        </div>        
+        <div>
+         <h5><%= @product.name %></h5>
+         <p><%= @product.detail %></p>
+         <h6><%= (@product.price.to_i*1.1).round %>円<span>(税込)</span></h6>
+        </div>
+        <div>
+            <%= form_with model: @cart_item, url: cart_items_path, local:true do |f| %>
+            <%= f.hidden_field :product_id, value: @product.id %>
+            <%= f.select :quantity, (1..10).to_a, prompt: "個数を選択してください" %>
+            <%= f.submit 'カートに入れる' %>
+            <% end %>
+        </div>
+    </div>
+  </div>
+ </div>
