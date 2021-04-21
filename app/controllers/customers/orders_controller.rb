@@ -1,23 +1,28 @@
 class Customers::OrdersController < ApplicationController
 
-def new
-  @neworder = Order.new
-end
+  def new
+    @order = Order.new
+    @customer = current_customer
+    @deliveries = Delivery.where(customer_id: current_customer.id)
+  end
 
-def log
-end
+  def create
+  end
 
-def create
-end
+  def log
 
-def thanx
-end
+  end
 
-def index
-end
 
-def show
-end
+
+  def thanx
+  end
+
+  def index
+  end
+
+  def show
+  end
 
 
 end
