@@ -1,14 +1,14 @@
-<h1>トップページ</h1>
-
-<% if customer_signed_in? %>
-  <li>
-    <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-  </li>
-<% else %>
-  <li>
-    <%= link_to "新規登録", new_customer_registration_path %>
-  </li>
-  <li>
-    <%= link_to "ログイン", new_customer_session_path %>
-  </li>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 main-visual mx-auto d-flex align-items-center">
+      <div class="cover-text text-center mx-auto">
+				<p class="text-light font-weight-light h5">
+				  ようこそ、ながのCAKEへ </br></br>
+				  このサイトは、ケーキ販売のECサイトになります。</br></br>
+				  会員でない方も商品の閲覧は可能となっておりますが </br></br>
+				  購入には会員登録が必要になります。
+				</p>
+			</div>
+    </div>
+  </div>
+</div>
