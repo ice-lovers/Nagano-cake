@@ -44,13 +44,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :create, :index, :show]
     post 'orders/log', to: 'orders#log'
     get 'orders/thanx', to: 'orders#thanx'
-    resources :deliveries, except: [:show, :new]
-    resources :orders, only: [:new, :create, :index, :show] do
-      collection do
-        post 'log'
-        get 'thanx'
-      end
-    end
   end
 
   scope module: :customers do
