@@ -1,4 +1,5 @@
 class Customers::DeliveriesController < ApplicationController
+
   def index
   end
 
