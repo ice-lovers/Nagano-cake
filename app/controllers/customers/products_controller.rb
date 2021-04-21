@@ -1,6 +1,7 @@
 class Customers::ProductsController < ApplicationController
 
   def top
+    @new_arrivals_products = Product.limit(4).order("created_at ASC")
   end
 
   def about
