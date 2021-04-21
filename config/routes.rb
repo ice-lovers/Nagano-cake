@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :customers do
-    resources :deliveries, except: [:show]
+    resources :deliveries, except: [:show, :new]
     resources :orders, only: [:new, :create, :index, :show] do
       collection do
         post 'log'
