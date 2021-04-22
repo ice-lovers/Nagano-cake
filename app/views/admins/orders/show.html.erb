@@ -53,10 +53,10 @@
           <% @order_details.each do |order_detail| %>
             <tr>
               <td><%= order_detail.product.name %></td>
-              <td><%= price %></td>
-              <td><%= order_detail.product.quantity %></td>
-              <td><%= %></td>
-              <td><%= form_with model:@order_details, url:admins_order_details_path, method::patch do |f| %>
+              <td><%= order_detail.price %></td>
+              <td><%= order_detail.quantity %></td>
+              <td><%= (order_detail.price*order_detail.quantity).floor.to_s(:delimited)%></td>
+              <td><%= form_with model:@order_details, url:admins_order_details_path(order_detail) do |f| %>
                 <%= f.select :production_status, OrderDetail.production_statuses.keys, class: "order_detail_status-select" %>
               </td>
               <td><%= f.submit "更新", class:"btn btn-success" %></td>
