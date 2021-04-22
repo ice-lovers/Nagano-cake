@@ -10,6 +10,42 @@
   </head>
 
   <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+      <div class="container">
+        <%= link_to image_tag("logo.png"), "/" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <% if customer_signed_in? %>
+            <li><%= link_to " マイページ ", customers_path, class: 'btn btn-outline-primary' %></li>
+            <li><%= link_to " 商品一覧 ", products_path, class: 'btn btn-outline-dark' %></li>
+            <li><%= link_to " カート ", cart_items_path, class: 'btn btn-outline-warning' %></li>
+            <li><%= link_to " ログアウト ", destroy_customer_session_path, method: :delete, class: 'btn btn-outline-danger' %></li>
+            <% elsif admin_signed_in? %>
+            <li><%= link_to " 商品一覧", admins_products_path, class: 'btn btn-outline-dark' %></li>
+            <li><%= link_to " 会員一覧 ", admins_customers_path, class: 'btn btn-outline-primary' %></li>
+            <li><%= link_to " 注文履歴一覧 ", admins_orders_path, class: 'btn btn-outline-info' %></li>
+            <li><%= link_to " ジャンル一覧 ", admins_categories_path, class: 'btn btn-outline-warning' %></li>
+            <li><%= link_to " ログアウト ", destroy_admin_session_path, method: :delete, class: 'btn btn-outline-danger' %></li>
+            <% else %>
+            <li><%= link_to " About ", about_path, class: 'btn btn-outline-secondary' %></li>
+            <li><%= link_to " 商品一覧 ", products_path, class: 'btn btn-outline-dark' %></li>
+            <li><%= link_to " 新規登録 ", new_customer_registration_path, class: 'btn btn-outline-primary' %></li>
+            <li><%= link_to " ログイン ", new_customer_session_path, class: 'btn btn-outline-success' %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <%= yield %>
+
+    <footer>
+      <p class="text-center bg-light py-5 mt-5">© All rights reserved by ice-lovers.</p>
+    </footer>
+
   </body>
 </html>

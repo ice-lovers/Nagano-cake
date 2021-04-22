@@ -3,6 +3,15 @@ Rails.application.routes.draw do
   root to: 'customers/products#top'
 
 
+  scope module: :customers do
+    get 'about' => 'products#about'
+  end
+
+  scope module: :customers do
+    get 'customers/edit', to: 'customers#edit'
+    patch 'customers', to: 'customers#update'
+  end
+
   devise_for :customers, controllers: {
   sessions:      'customers/sessions',
   passwords:     'customers/passwords',
@@ -23,15 +32,25 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
   end
 
-
   scope module: :customers do
     resources :cart_items, except: [:new, :show, :edit]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+    get 'customers', to: 'customers#show'
+    get 'customers/unsubscribe', to: 'customers#unsubscribe'
+    patch 'customers/out', to: 'customers#out'
   end
 
   scope module: :customers do
-    resources :deliveries, except: [:show]
+    resources :deliveries, except: [:show, :new]
+    resources :orders, only: [:new, :create, :index, :show] do
+      collection do
+        post 'log'
+        get 'thanx'
+      end
+    end
   end
 
+  scope module: :customers do
+    resources :products, only: [:show, :index]
+  end
 end
-
