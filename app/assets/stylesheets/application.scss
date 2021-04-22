@@ -16,3 +16,12 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+
+.navbar-nav li{
+ margin-left: 40px;
+}
+
+.main-visual{
+ height: 600px;
+ background-image: image-url('top-cake.jpg');
+}

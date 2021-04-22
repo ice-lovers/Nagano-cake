@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div class ="col-lg-12">
+          <h3>商品一覧</h3> <%= link_to "新規作成", new_admins_product_path %>
+              <table class = "table table-hover">
+                <thead>
+                  <tr>
+                    <th>商品ID</th>
+                    <th>商品名</th>
+                    <th>税抜価格</th>
+                    <th>ジャンル</th>
+                    <th>ステータス</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @products.each do |product| %>
+                  <tr>
+                    <td><%= product.id %></td>
+                    <td><%= link_to product.name,admins_product_path(product.id) %></td>
+                    <td><%= product.price %>円</td>
+                    <td><%= product.category.name %></td>
+                    <td>
+                      <% if product.product_status == true %>
+                      <span>販売中</span>
+                      <% elsif product.product_status == false %>
+                      <span>販売停止中</span>
+                      <% end %>
+          　　　　　　　　　</td>
+                    <th>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+               <%= paginate @products %>
+        </div>
+    </div>
+</div>

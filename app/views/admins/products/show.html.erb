@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h3>商品詳細</h3>
+      <div>
+        <%= attachment_image_tag @product, :image, :fill, 300, 300, fallback: "kanban_jyunbi.png", size:'300x300' %>
+      </div>
+      
+      <div>
+        <table>
+        <tr>
+          <td>商品名</td>
+          <td><%= @product.name %></td>
+        </tr>
+        <tr>
+          <td>商品説明</td>
+          <td><%= @product.detail %></td>
+        </tr>
+          <tr>
+          <td>ジャンル</td>
+          <td><%= @product.category.name %></td>
+        </tr>
+        
+        <tr>
+          <td>税抜価格<br>(税込価格)</td>
+          <td>
+             <%= @product.price %>円<br>
+            (<%= (@product.price.to_i*1.1).round %>円)
+          </td>
+        </tr>
+        <tr>
+          <td>販売ステータス</td>
+          <td>
+            
+            <% if @product.product_status == true %>
+            <p>販売中</p>
+            <% elsif @product.product_status == false %>
+            <p>販売停止中</p>
+            <% end %>
+            
+          </td>
+        </tr>
+      </table>
+      <%= link_to '編集する',  edit_admins_product_path(@product), class: "btn btn-success btn-sm" %>
+    </div>
+        
+        
+    </div>
+  </div>
+ </div>
