@@ -1,4 +1,5 @@
 class OrderDetail < ApplicationRecord
+
    
   belongs_to :customer
   belongs_to :product
@@ -8,5 +9,4 @@ class OrderDetail < ApplicationRecord
   def total_price
     price *quantity
   end 
-  
 end
