@@ -21,9 +21,10 @@
       <h4>お届け先</h4>
         <div class="address_radio">
         　<%= f.radio_button :address, "basic_address", checked: "checked" %>
-          <%= f.label :address, "ご自身の住所", {value: :tbasic_address, style: "display: inline-block;"} %><br>
-          〒<%= @customer.postal_code %> <%= @customer.address %><br>
-          <%= @customer.last_name %> <%= @customer.first_name %>
+          <%= f.label :address, "ご自身の住所", {value: :basic_address, style: "display: inline-block;"} %><br>
+          〒<%= @customer.postal_code %>
+            <%= @customer.address %><br>
+            <%= @customer.last_name %> <%= @customer.first_name %>
         </div>
 
         <div class="address_radio">
