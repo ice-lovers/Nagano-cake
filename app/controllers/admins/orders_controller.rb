@@ -1,7 +1,14 @@
 class Admins::OrdersController < ApplicationController
 
   def index
-    @orders = Order.all
+    #↓リンク元にパラメータを持たせてので、変数を振り分け↓ 
+    case params[:order_sort]
+    when "0"
+      @customer = Customer(params[:customer_id])
+      @orders = @customer.orders
+    else
+      @orders = Order.all.page(params[:page]).per(10)
+    end 
   end
 
   def show
