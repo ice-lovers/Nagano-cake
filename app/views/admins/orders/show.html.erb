@@ -71,10 +71,11 @@
         <table>
           <tr>
             <th class="text-left">商品合計</th>
-              <td></td>
+              <td><%= total_price(@order_details).to_s(:delimited) %></td>
             <th class="text-left">送料</th>
-              <td>800</td>
+              <td><%= @order.delivery_charge %></td>
             <th class="text-left">請求金額合計</th>
+              <td><%= @order.delivery_charge + total_price(@order_details).to_s(:delimited)  %></td>
           </tr>
         </table>
       </div>
