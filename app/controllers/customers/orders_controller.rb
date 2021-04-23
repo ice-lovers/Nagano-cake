@@ -3,7 +3,7 @@ class Customers::OrdersController < ApplicationController
   def new
     @order = Order.new
     @customer = current_customer
-    @deliveries = Delivery.where(customer_id: current_customer.id)
+    @deliveries = Delivery.where(customer: current_customer)
   end
 
 
