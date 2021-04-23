@@ -25,7 +25,7 @@
   　　  <div><%= @order.pay_type %></div>
   　　</div>
   
-  　　<%= form_with model:@order, url:admins_order_path, method::patch do |f| %>
+  　　<%= form_with model:@order do |f| %>
         <div class="date">
       　　<div>注文ステータス</div>
       　　<%= f.select :order_status, Order.order_statuses.keys, class: "order_status-select" %>
