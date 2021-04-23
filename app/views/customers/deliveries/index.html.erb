@@ -1,11 +1,10 @@
-<% provide(:title, "配送先登録/一覧") %>
 <div class="row">
     <div class="col-xs-12">
-        <h2 class="head-line text-center title_h2">配送先登録/一覧</h2>
-        <%= form_with(model: @delivery, :url => {:controller => "customer/deliveries"}) do |f| %>
-            <div class="col-xs-10">
+      <h3><strong>配送先登録/一覧</strong></h3>
+        <%= form_with(model: @delivery, :url => {:controller => "customers/deliveries"}) do |f| %>
+            <div>
                 <div class="form-group col-xs-12">
-                    <%= f.label :"郵便番号" ,class: "col-xs-3 control-label" %>
+                    <%= f.label :"郵便番号(ハイフンなし)" ,class: "col-xs-3 control-label" %>
                     <%= f.text_field :postal_code, class: "col-xs-4 form-control-static postal_code" %>
                 </div>
 
@@ -21,43 +20,35 @@
                 <%= f.submit '登録する' ,class: "col-xs-2 pull-right btn-lg btn-success " %>
             </div>
         <% end %>
+    </div>
+</div>
 
-        <div>
-            <% if @deliveries.present? %>
-              <table class="table table-hover table-bordered">
-                <thead>
-                    <tr class="info">
-                        <th>郵便番号</th>
-                        <th>住所</th>
-                        <th>宛名</th>
-                        <th colspan="2"></th>
-                    </tr>
-                </thead>
 
-                <tbody>
-                  <% deliveries.each do |delivery| %>
-                    <tr>
-                        <td>
-                            <%= delivery.postal_code %>
-                        </td>
-                        <td class="text-left">
-                            <%= delivery.address %>
-                        </td>
-                        <td class="text-left">
-                            <%= delivery.name %>
-                        </td>
-                        <td>
-                            <%= link_to "編集する",edit_delivery_path(delivery), class: "glyphicon glyphicon-pencil btn-sm btn-primary" %>
-                        </td>
-                        <td>
-                            <%= link_to "削除する",delivery_path(delivery), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %>
-                        </td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th class="col-xs-2">郵便番号</th>
+                <th class="col-xs-6">住所</th>
+                <th class="col-xs-2">宛名</th>
+                <th class="col-xs-2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @deliveries.each do |delivery| %>
+              <tr>
+                <td class="col-xs-2"><%= delivery.postal_code %></td>
+                <td class="col-xs-6"><%= delivery.address %></td>
+                <td class="col-xs-2"><%= delivery.name %></td>
+                <td class="col-xs-2">
+                    <%= link_to "編集する", edit_delivery_path(delivery), class: "glyphicon glyphicon-pencil btn-sm btn-primary" %>
+                    <%= link_to "削除する", delivery_path(delivery), method: :DELETE, data: {confirm: "本当に削除してもよろしいですか？"}, class: "glyphicon glyphicon-trash btn-sm btn-danger" %>
+                </td>
+              </tr>
             <% end %>
-
+        </tbody>
+        </table>
         </div>
     </div>
 </div>
