@@ -7,10 +7,12 @@ class Product < ApplicationRecord
   has_many :cart_items
   has_many :order_details
 
-#バリデーション  
-  validates :name, presence: true
-  validates :detail, presence: true
-  validates :category_id, presence: true
-  validates :price, presence: true
+#バリデーション
+with_options presence: true do
+  validates :name, length: { minimum: 1 }
+  validates :detail
+  validates :category_id
+  validates :price, numericality: { only_integer: true }
+end
 
 end

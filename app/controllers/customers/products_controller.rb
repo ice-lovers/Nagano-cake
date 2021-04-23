@@ -1,5 +1,6 @@
 class Customers::ProductsController < ApplicationController
 
+
   def top
     @new_arrivals_products = Product.limit(4).order("created_at ASC")
   end
@@ -7,7 +8,7 @@ class Customers::ProductsController < ApplicationController
   def about
   end
 
-  PER = 4
+  PER = 8
   def index
     @products = Product.where(product_status: "true").page(params[:page]).per(PER)
   end
@@ -16,6 +17,5 @@ class Customers::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @cart_item = CartItem.new
   end
-
 
 end
