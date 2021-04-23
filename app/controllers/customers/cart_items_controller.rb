@@ -4,56 +4,49 @@ class Customers::CartItemsController < ApplicationController
 
   def index
     @cart_items = current_customer.cart_items
+    @total_price = @cart_items.sum{|cart_item|cart_item.product.price_without_tax * cart_item.quantity * 1.1}
+    # 1行目の@cart_itemsにsumメソッドを用いて{}の||ブロック変数にcart_itemを代入している。(each do || end の文章と同じイメージ)
+    # 『このcart_itemのproductのprice_without_tax』 → 『このカート商品の商品（単体）の税抜き価格』
   end
 
   def create
-    @cart_item = current_customer.cart_items.new(params_cart_item)
-    @update_cart_item =  CartItem.find_by(product: @cart_item.product)
-    if @update_cart_item.present? && @cart_item.valid?
-      @cart_item.quantity += @update_cart_item.quantity
-      @update_cart_item.destroy
-    end
+    @cart_item = CartItem.new(cart_item_params)
+    @cart_item.customer_id = current_customer.id
+    @cart_item.product_id = params[:product_id]
     if @cart_item.save
-      flash[:notice] = "#{@cart_item.product.name}をカートに追加しました"
-      redirect_to cart_items_path
+     flash[:notice] = "#{@cart_item.product.name}をカートに追加しました。"
+     redirect_to cart_items_path
     else
-      @product = Product.find(params[:cart_item][:product_id])
-      @cart_item = CartItem.new
       flash[:alert] = "個数を選択してください"
-      render ("customer/products/show")
+      render "customers/products/show"
     end
   end
 
   def update
     @cart_item = CartItem.find(params[:id])
-    @cart_item.update(quantity: params[:cart_item][:quantity].to_i)
-    flash.now[:success] = "#{@cart_item.product.name}の数量を変更しました"
-    @price = sub_price(@cart_item).to_s(:delimited)
-    @cart_items = current_cart
-    @total = total_price(@cart_items).to_s(:delimited)
+    @cart_item.update(cart_item_params)
+    redirect_to cart_items_path
   end
 
   def destroy
     @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
     flash.now[:alert] = "#{@cart_item.product.name}を削除しました"
-    @cart_items = current_customer.cart_items
-    @total = total_price(@cart_items).to_s(:delimited)
+    redirect_to cart_items_path
   end
 
   def destroy_all
-    @cart_items = current_customer.cart_items
-    @cart_items.destroy_all
+    @cart_item = current_customer.cart_items
+    @cart_item.destroy_all
     flash[:alert] = "カートの商品を全て削除しました"
-    redirect_to cart_items_destroy_all_path
+    redirect_to cart_items_path
   end
-
 
   private
 
-  def params_cart_item
-    params.require(:cart_item).permit(:quantity, :product_id)
-  end
+    def cart_item_params
+      params.require(:cart_item).permit(:quantity, :product_id, :customer_id)
+    end
 
 
 end
