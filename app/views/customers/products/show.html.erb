@@ -15,7 +15,7 @@
          <p><%= @product.detail %></p>
          <h6>¥<%= (@product.price*1.1).round.to_s(:delimited) %></h6>
         </div>
-        
+
         <% if @product.product_status == true %>
         <div>
             <%= form_with model: @cart_item, url: cart_items_path, local:true do |f| %>
@@ -30,7 +30,7 @@
           <p>大変申し訳ございません。<br>準備が整うまで、もうしばらくお待ちくださいませ。</p>
         </div>
         <% end %>
-        
+
     </div>
   </div>
  </div>

@@ -17,6 +17,7 @@ class Customers::CartItemsController < ApplicationController
      flash[:notice] = "#{@cart_item.product.name}をカートに追加しました。"
      redirect_to cart_items_path
     else
+      @product = params[:product_id]
       flash[:alert] = "個数を選択してください"
       render "customers/products/show"
     end
