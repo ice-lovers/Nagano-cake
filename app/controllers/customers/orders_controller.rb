@@ -28,7 +28,7 @@ class Customers::OrdersController < ApplicationController
       session[:order][:name] = current_customer.last_name + current_customer.first_name
 
     elsif params[:order][:a_method] == "1"
-      delivery = Delivery.find(params[:order_address])
+      delivery = Delivery.find(params[:order][:order_address])
       session[:order][:postal_code] = delivery.postal_code
       session[:order][:address] = delivery.address
       session[:order][:name] = delivery.name
@@ -47,6 +47,15 @@ class Customers::OrdersController < ApplicationController
     redirect_to orders_thanx_path
 
     @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
+      order_detail = OrderDetail.new
+      order_detail.order_id = order.id
+      order_detail.product_id = cart_item.product_id
+      order_detail.quantity = cart_item.quantity
+      order_detail.production_status = 0
+      order_detail.price = (cart_item.product.price * 1.1).floor
+      order_detail.save
+    end
     
     @cart_items.destroy_all
     
