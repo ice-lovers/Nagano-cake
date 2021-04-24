@@ -3,15 +3,14 @@
   　<h4 class="col-md-3 bg-light text-center">注文履歴詳細</h4>
   </div>
 
+
   <div class="row">
     <div class="col-12 text-left">
     <table>
       <tr>
         <th><h5>購入者</h5></th>
           <td>
-          　<%= link_to admins_customer_path(@order.id), :style=>"color:black;" do %>
-          　<div class="text-left"><%= @order.name %></div>
-          　<% end %>
+          　<%= link_to @order.name, admins_customer_path(@order.id), :style=>"color:black;" %>
           </td>
     　</tr>
       <tr>
@@ -35,15 +34,15 @@
           <td><%= @order.pay_type %></td>
     　</tr>
 
-      <%= form_with model:@order do |f| %>
         <tr>
           <th width="200"><h5>注文ステータス</h5></th>
             <td>
+              <%= form_with model:@order, url:'/admins/orders/:id', local: true do |f| %>
               <%= f.select :order_status, Order.order_statuses.keys, class: "order_status-select" %>
               <%= f.submit "更新", class:"btn btn-success" %>
+              <% end %>
             </td>
         </tr>
-      <% end %>
     </table>
     </div>
   </div>
@@ -68,7 +67,7 @@
             <td><%= order_detail.price %></td>
             <td><%= order_detail.quantity %></td>
             <td><%= (order_detail.price * order_detail.quantity).floor.to_s(:delimited) %></td>
-            <td><%= form_with model:@order_details, local: true do |f| %>
+            <td><%= form_with model: @order_details, local: true do |f| %>
                 <%= f.select :production_status, OrderDetail.production_statuses.keys, class: "order_detail_status-select" %></td>
             <td><%= f.submit "更新", class:"btn btn-success" %></td>
                 <% end %>
@@ -92,7 +91,7 @@
         </tr>
         <tr>
           <th width="120">請求金額合計</th>
-          <td align="right"><%= @order.delivery_charge.to_s+@order.total_price.to_s(:delimited) %>円</td>
+          <td align="right"><%= (@order.delivery_charge + @order.total_price).to_s(:delimited) %>円</td>
         </tr>
       </table>
     </div>
