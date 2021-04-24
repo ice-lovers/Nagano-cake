@@ -1,0 +1,11 @@
+    <div class="row">
+		<div><%= link_to "全商品", products_path %></div>
+	</div>
+	
+	  <% categories.each do |category| %>
+		 <%= link_to category_products_path(category) do %>
+			<div>
+			 <%= category.name %>
+			</div>
+		 <% end %>
+	  <% end %>
