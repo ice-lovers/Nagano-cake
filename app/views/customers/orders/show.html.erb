@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row mb-5">
+    <h4 class="col-md-3 offset-1 bg-light text-center">注文履歴詳細</h4>
+  </div>
+  <div class="col-8">
+    <h5>注文情報</h5>
+    <table class="table table-hover table-inverse table-bordered  align-top">
+      <tr class="info">
+      　<th>注文日</th>
+        <td><%= @order.created_at %></td>
+      </tr>
+      <tr class="info">
+        <th>配送先</th>
+        <td><%= @order.address %></td>
+      </tr>
+      <tr class="info">
+        <th>支払方法</th>
+        <td><%= @order.pay_type %></td>
+      </tr>
+      <tr class="info">
+        <th>ステータス</th>
+        <td><%= @order.order_status %></td>
+      </tr>
+    </table>
+  </div>
+</div>

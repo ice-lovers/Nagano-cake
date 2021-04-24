@@ -20,7 +20,7 @@ class Customers::OrdersController < ApplicationController
     session[:order][:total_price] = @total_price
     session[:order][:order_status] = 0
     session[:order][:customer_id] = current_customer.id
-    session[:order][:pay_type] = params[:order][:pay_type]
+    session[:order][:pay_type] = params[:order][:pay_type].to_i
 
     if params[:order][:a_method] == "0"
       session[:order][:postal_code] = current_customer.postal_code
@@ -56,9 +56,7 @@ class Customers::OrdersController < ApplicationController
       order_detail.price = (cart_item.product.price * 1.1).floor
       order_detail.save
     end
-    
-    @cart_items.destroy_all
-    
+
   end
 
   def thanx
@@ -68,10 +66,15 @@ class Customers::OrdersController < ApplicationController
     @orders = Order.where(customer_id: current_customer.id)
   end
 
+  def show
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
+  end
+
 private
 
   def order_params
-    params.require(:order).permit(:pay_type, :total_price, :postal_code, :address, :name,)
+    params.require(:order).permit(:pay_type, :total_price, :postal_code, :address, :name)
   end
 
 end
