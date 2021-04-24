@@ -56,7 +56,7 @@ class Customers::OrdersController < ApplicationController
       order_detail.price = (cart_item.product.price * 1.1).floor
       order_detail.save
     end
-
+    @cart_items.destroy_
   end
 
   def thanx
