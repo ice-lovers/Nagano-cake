@@ -24,7 +24,7 @@
                   <% @products.each do |product| %>
                   <tr>
                     <td class="align-middle"><%= product.id %></td>
-                    <td class="align-middle"><%= link_to product.name, admins_product_path(product.id) %></td>
+                    <td class="align-middle"><%= link_to product.name, admins_product_path(product.id), :style => "color:black" %></td>
                     <td class="align-middle"><%= product.price.to_s(:delimited) %>円</td>
                     <td class="align-middle"><%= product.category.name %></td>
                     <td class="align-middle">
@@ -42,8 +42,8 @@
     </div>
     
     <div class="row">
-      <div class ="col-lg-12">
-        <div class="text-center"><%= paginate @products %></div>
+      <div class ="col-lg-12 d-flex justify-content-center">
+        <%= paginate @products %>
       </div>
     </div>
     
