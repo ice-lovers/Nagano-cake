@@ -30,7 +30,6 @@ class Admins::OrdersController < ApplicationController
     @order.update(order_params)
     if @order.order_status == "入金確認"
       @order_details.update(production_status: 1)
-      flash[:success] = "注文ステータスを変更しました"
     end
     redirect_to admins_order_path(@order)
   end
