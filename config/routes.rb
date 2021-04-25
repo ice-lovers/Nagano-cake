@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       member do
       resource :order_details, only: [:update]
       end
-    end 
+    end
     # patch 'orders/:id', to: 'orders#update'
   end
 
