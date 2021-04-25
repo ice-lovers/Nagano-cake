@@ -1,5 +1,7 @@
 class Admins::ProductsController < ApplicationController
   
+  before_action :authenticate_admin!
+  
   PER = 10
   def index
     @products = Product.page(params[:page]).per(PER)

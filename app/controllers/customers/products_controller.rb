@@ -12,14 +12,14 @@ class Customers::ProductsController < ApplicationController
   PER = 8
   def index
     @categories = Category.all
-    
+
     if params[:category_id]
       @category = Category.find(params[:category_id])
       @products = @category.products.where(product_status: "true").page(params[:page]).per(PER) 
     else
       @products = Product.where(product_status: "true").page(params[:page]).per(PER)
     end
-    
+
   end
 
   def show
