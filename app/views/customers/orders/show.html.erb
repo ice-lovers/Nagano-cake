@@ -37,7 +37,7 @@
         </tr>
         <tr class="info">
           <th>ご請求額</th>
-          <td><%= (((@order.total_price*1.1) + @order.delivery_charge).floor).to_s(:delimited) %></td>
+          <td><%= ((@order.delivery_charge + @order.total_price*1.1).floor).to_s(:delimited) %></td>
         </tr>
       </table>
     </div>

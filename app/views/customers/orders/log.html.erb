@@ -42,11 +42,11 @@
         </tr>
         <tr class="info">
           <th>商品合計</th>
-          <td><%= session[:order][:total_price].to_s(:delimited) %></td>
+          <td><%= ((session[:order][:total_price]*1.1).floor).to_s(:delimited) %></td>
         </tr>
         <tr class="info">
           <th>請求金額</th>
-          <td><%= (800 + session[:order][:total_price]).to_s(:delimited) %></td>
+          <td><%= ((800 + session[:order][:total_price]*1.1).floor).to_s(:delimited) %></td>
         </tr>
       </table>
     </div>
