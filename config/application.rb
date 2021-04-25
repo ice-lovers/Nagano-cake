@@ -1,3 +1,4 @@
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -17,3 +18,5 @@ module NaganoCake
     # the framework and any gems in your application.
   end
 end
+
+

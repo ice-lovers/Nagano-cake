@@ -2,9 +2,10 @@ class Admins::OrdersController < ApplicationController
 
   def index
     #↓リンク元にパラメータを持たせてので、変数を振り分け↓
-    case params[:order_sort]
-    when "0"
-      @customer = customers_url(params[:customer_id])
+    case params[:order]
+    when "customer"
+      #customer_id = Rails.application.routes.recognize_path(request.referer)
+      @customer = Customer.find(params[:id])
       @orders = @customer.orders
     else
       @orders = Order.all.page(params[:page]).per(10)
@@ -27,6 +28,7 @@ class Admins::OrdersController < ApplicationController
     @order.update(order_params)
     if @order.order_status == "入金確認"
       @order_details.update(production_status: 1)
+      flash[:success] = "注文ステータスを変更しました"
     end
     redirect_to admins_order_path(@order)
   end
