@@ -1,4 +1,6 @@
 class Admins::OrdersController < ApplicationController
+  
+   before_action :authenticate_admin!
 
   def index
     #↓リンク元にパラメータを持たせてので、変数を振り分け↓
