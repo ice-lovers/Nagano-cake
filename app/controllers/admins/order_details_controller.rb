@@ -2,11 +2,14 @@ class Admins::OrderDetailsController < ApplicationController
 
   def update
     @order_detail = OrderDetail.find(params[:id])
-    if @order_detail.update(order_detail_params)
-      redirect_to admins_order_detail_path(@order_detail)
-    else
-      render :show
+    @order = @order_detail.order
+    @order_detail.update(order_detail_params)
+    if @order_detail.production_status == "製作中"
+      @order.update(order_status: 2)
+    elsif @order.order_details.count == @order.order_details.where(production_status: "製作完了").count
+      @order.update(order_status: 3)
     end
+      redirect_to admins_order_path(@order_detail.order)
   end
 
   private

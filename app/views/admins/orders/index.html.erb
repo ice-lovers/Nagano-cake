@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <h4 class="col-md-3 bg-light text-center">注文履歴一覧</h4>
+    <h4 class="col-md-4 bg-light text-center">注文履歴一覧</h4>
   </div>
-  
+
   <div class="row">
-    <div class="col-8 mx-auto">
+    <div class="col-md-10 mx-auto">
       <table class="table table-striped">
         <thead>
           <tr class="order-info">
@@ -17,20 +17,10 @@
         <tbody>
           <% @orders.each do |order| %>
           <tr>
-            <td>
-              <%= link_to admins_order_path(order.id) do %>
-              <%= order.created_at %>
-              <% end %>
-            </td>
-            <td>
-              <%= order.customer.name %>
-            </td>
-            <td>
-              <%= order.order_details.count %>
-            </td>
-            <td>
-              <%= order.order_status %>
-            </td>
+            <td><%= link_to order.created_at, admins_order_path(order.id), :style=>"color:black;" %></td>
+            <td><%= order.name %></td>
+            <td><%= order.order_details.count %></td>
+            <td><%= order.order_status %></td>
           </tr>
           <% end %>
         </tbody>
