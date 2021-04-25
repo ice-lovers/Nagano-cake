@@ -37,7 +37,7 @@
         <tr>
           <th width="200"><h5>注文ステータス</h5></th>
             <td>
-              <%= form_with model:@order, url:'/admins/orders/:id', local: true do |f| %>
+              <%= form_with model:@order, url:admins_order_path, local: true do |f| %>
               <%= f.select :order_status, Order.order_statuses.keys, class: "order_status-select" %>
               <%= f.submit "更新", class:"btn btn-success" %>
               <% end %>
