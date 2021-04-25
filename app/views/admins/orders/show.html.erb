@@ -56,7 +56,7 @@
             <th>単価（税込）</th>
             <th>数量</th>
             <th>小計</th>
-            <th>制作ステータス</th>
+            <th>製作作ステータス</th>
             <th></th>
           </tr>
         </thead>
@@ -67,7 +67,7 @@
             <td><%= order_detail.price %></td>
             <td><%= order_detail.quantity %></td>
             <td><%= (order_detail.price * order_detail.quantity).floor.to_s(:delimited) %></td>
-            <td><%= form_with model: @order_details, local: true do |f| %>
+            <td><%= form_with model: order_detail, url:admins_order_details_path(order_detail), local: true do |f| %>
                 <%= f.select :production_status, OrderDetail.production_statuses.keys, class: "order_detail_status-select" %></td>
             <td><%= f.submit "更新", class:"btn btn-success" %></td>
                 <% end %>
@@ -83,7 +83,7 @@
       <table>
         <tr>
           <th width="120">商品合計</th>
-          <td align="right"><%= @order.total_price.to_s(:delimited) %>円</td>
+          <td align="right"><%= ((@total_price * 1.1).floor).to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <th width="120">送料</th>
@@ -91,7 +91,7 @@
         </tr>
         <tr>
           <th width="120">請求金額合計</th>
-          <td align="right"><%= (@order.delivery_charge + @order.total_price).to_s(:delimited) %>円</td>
+          <td align="right"><%= ((@order.delivery_charge + @total_price *1.1).floor).to_s(:delimited) %>円</td>
         </tr>
       </table>
     </div>

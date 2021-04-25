@@ -28,9 +28,12 @@ Rails.application.routes.draw do
     resources :products, except: [:destroy]
     resources :categories, except: [:new, :show]
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:index, :show]
-    patch 'orders/:id', to: 'orders#update'
-    patch 'order_details/:id', to: 'order_details#update'
+    resources :orders, only: [:index, :show, :update] do
+      member do
+      resource :order_details, only: [:update]
+      end
+    end 
+    # patch 'orders/:id', to: 'orders#update'
   end
 
   scope module: :customers do

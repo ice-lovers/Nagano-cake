@@ -56,7 +56,9 @@ class Customers::OrdersController < ApplicationController
       order_detail.price = (cart_item.product.price * 1.1).floor
       order_detail.save
     end
-    @cart_items.destroy_
+
+    @cart_items.destroy_all
+
   end
 
   def thanx
@@ -66,15 +68,10 @@ class Customers::OrdersController < ApplicationController
     @orders = Order.where(customer_id: current_customer.id)
   end
 
-  def show
-    @order = Order.find(params[:id])
-    @order_details = @order.order_details
-  end
-
 private
 
   def order_params
-    params.require(:order).permit(:pay_type, :total_price, :postal_code, :address, :name)
+    params.require(:order).permit(:pay_type, :total_price, :postal_code, :address, :name,)
   end
 
 end
