@@ -29,7 +29,7 @@
               <%= order_detail.product.name %>
             <% end %>
           </th>
-          <th class="align-middle"><%= order.total_price %>円</th>
+          <th class="align-middle"><%= ((order.delivery_charge + order.total_price * 1.1).floor).to_s(:delimited) %>円</th>
           <th class="align-middle"><%= order.order_status %></th>
           <th class="align-middle"><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></th>
         </tr>
