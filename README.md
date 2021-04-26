@@ -1,24 +1,33 @@
-# ながのCAKE
+# ながのCAKE　ECサイト　
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリケーションの説明
+ * DMMWEBキャンプにて、チーム開発フェーズで作成したアプリケーション　
+ * 長野県にある小さな洋菓子店『ながのCAKE』の商品を通販するためのECサイト 
+ 
+# フレームワーク
+ * Ruby on Rails 
+ 
+# 実装した機能　
+## 管理者
+ * 商品ジャンル登録機能
+ * 商品登録機能
+ * 会員管理機能
+ * 注文履歴確認機能
+ 
+## 会員
+ * 会員登録・編集・退会機能
+ * 商品の購入機能（カート経由）
+ * 注文履歴確認機能
+ * 配送先住所登録機能
 
-Things you may want to cover:
+# 開発者
+## チーム名
+* アイス愛してる
+## メンバー
+* けーちゃん
+* たくやん
+* ともちゃん
+* まきちゃん
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
