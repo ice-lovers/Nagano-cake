@@ -1,5 +1,10 @@
 class Admins::ProductsController < ApplicationController
+  
+  before_action :authenticate_admin!
+  
+  PER = 10
   def index
+    @products = Product.page(params[:page]).per(PER)
   end
 
   def new
@@ -8,8 +13,11 @@ class Admins::ProductsController < ApplicationController
   
   def create
     @product = Product.new(product_params)
-    @product.save
-    redirect_to admins_product_path(@product)
+    if @product.save
+      redirect_to admins_product_path(@product), notice: '＊商品を登録しました＊'
+    else
+      render 'new'
+    end
   end
 
   def show
@@ -17,9 +25,16 @@ class Admins::ProductsController < ApplicationController
   end
 
   def edit
+    @product = Product.find(params[:id])
   end
   
   def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      redirect_to admins_product_path(@product), notice: '＊商品情報を更新しました＊'
+    else
+      render 'edit'
+    end
   end
   
   private

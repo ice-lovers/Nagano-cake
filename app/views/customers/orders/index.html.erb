@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <h4 class="bg-light text-center">注文履歴一覧</h4>
+  </div>
+
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="bg-light">
+            <th>注文日</th>
+            <th>配送先</th>
+            <th>注文商品</th>
+            <th>支払金額</th>
+            <th>ステータス</th>
+            <th>注文詳細</th>
+          </tr>
+        </thead>
+        <% @orders.each do |order| %>
+        <tr>
+          <th class="align-middle"><%= order.created_at.strftime("%Y年%m月%d日") %></th>
+          <th class="align-middle">
+            <%= order.postal_code %> </br>
+            <%= order.address %> </br>
+            <%= order.name %>
+          </th>
+          <th class="align-middle">
+            <% order.order_details.each do |order_detail| %>
+              <%= order_detail.product.name %>
+            <% end %>
+          </th>
+          <th class="align-middle"><%= ((order.delivery_charge + order.total_price * 1.1).floor).to_s(:delimited) %>円</th>
+          <th class="align-middle"><%= order.order_status %></th>
+          <th class="align-middle"><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></th>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+</div>

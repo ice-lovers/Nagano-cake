@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row mb-5">
+    <h4 class="col-md-3 offset-1 bg-light text-center">注文情報確認</h4>
+  </div>
+  <div class="row d-flex justify-content-around">
+    <div class="col-8">
+      <table class="table table-hover table-inverse table-bordered">
+        <thead class="thead-light">
+          <tr class="order-info">
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th style="width: 200px">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td>
+              <%= attachment_image_tag(cart_item.product, :image, size:'60x40', fallback: "kanban_jyunbi.png") %>
+              <%= cart_item.product.name %>
+            </td>
+            <td class="align-middle">
+              <%= ((cart_item.product.price.to_i*1.1).floor).to_s(:delimited) %>
+            </td>
+            <td class="align-middle">
+              <%= cart_item.quantity %>
+            </td>
+            <td class="align-middle">
+              <%= ((cart_item.product.price.to_i*cart_item.quantity*1.1).floor).to_s(:delimited) %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-2">
+      <table class="table table-hover table-inverse table-bordered  align-top">
+        <tr class="info">
+        　<th>送料</th>
+          <td><%= session[:order][:delivery_charge] %></td>
+        </tr>
+        <tr class="info">
+          <th>商品合計</th>
+          <td><%= ((session[:order][:total_price]*1.1).floor).to_s(:delimited) %></td>
+        </tr>
+        <tr class="info">
+          <th>請求金額</th>
+          <td><%= ((800 + session[:order][:total_price]*1.1).floor).to_s(:delimited) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-8">
+      <table>
+        <tr>
+          <th>支払方法</th>
+          <td><%= session[:order][:pay_type] %></td>
+        </tr>
+        <tr>
+          <th class="align-top">お届け先</th>
+          <td>
+            <%= session[:order][:postal_code] %>
+            <%= session[:order][:address] %> </br>
+            <%= session[:order][:name] %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 mx-auto">
+      <%= link_to "購入を確定する", orders_path, method: :post, class:"btn btn-success" %>
+    </div>
+  </div>
+</div>
+

@@ -1,50 +1,57 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12 text-center">
-      <h3>商品詳細</h3>
-      <div>
-        <%= attachment_image_tag @product, :image, :fill, 300, 300, fallback: "kanban_jyunbi.png", size:'300x300' %>
-      </div>
+  
+  <div class="row mt-4">
+    <h4 class="bg-light px-3 ml-5">商品詳細</h4>
+    <p class="text-success"><%= notice %></p> 
+  </div>
+  
       
+       
+  <div class="row my-5">   
+    <div class="col-lg-5 text-center"> 
       <div>
+        <%= attachment_image_tag @product, :image, fallback: "kanban_jyunbi.png", size:'300x300' %>
+      </div>
+    </div>
+      
+      <div class="col-lg-7">
         <table>
         <tr>
-          <td>商品名</td>
-          <td><%= @product.name %></td>
+          <td class="py-2 pr-3">商品名</td>
+          <td class="h5"><%= @product.name %></td>
         </tr>
         <tr>
-          <td>商品説明</td>
-          <td><%= @product.detail %></td>
+          <td class="py-2 pr-3">商品説明</td>
+          <td class="h5"><%= @product.detail %></td>
         </tr>
-          <tr>
-          <td>ジャンル</td>
-          <td><%= @product.category.name %></td>
+        <tr>
+          <td class="py-2 pr-3">ジャンル</td>
+          <td class="h5"><%= @product.category.name %></td>
         </tr>
         
         <tr>
-          <td>税抜価格<br>(税込価格)</td>
-          <td>
-             <%= @product.price %>円<br>
-            (<%= (@product.price.to_i*1.1).round %>円)
+          <td class="py-2 pr-3">税込価格<br>(税抜価格)</td>
+          <td class="h5">
+            <%= (@product.price.to_i*1.1).round.to_s(:delimited) %>
+            (<%= @product.price %>)円
           </td>
         </tr>
         <tr>
-          <td>販売ステータス</td>
-          <td>
-            
-            <% if @product.product_status == true %>
-            <p>販売中</p>
-            <% elsif @product.product_status == false %>
-            <p>販売停止中</p>
-            <% end %>
-            
+          <td class="py-2 pr-3">販売ステータス</td>
+          <td class="h5">
+          <% if @product.product_status == true %>
+          <span class="text-success"><i class="far fa-circle"></i> 販売中</span>
+          <% elsif @product.product_status == false %>
+          <span><i class="fas fa-times"></i> 販売停止中</span>
+          <% end %>
           </td>
         </tr>
       </table>
-      <%= link_to '編集する',  edit_admins_product_path(@product), class: "btn btn-success btn-sm" %>
+      
+      <div class="my-4">
+      <%= link_to '編集する',  edit_admins_product_path(@product), class: "btn btn-success btn-sm px-4 py-2" %>
+      </div>
     </div>
-        
-        
-    </div>
+   </div> 
   </div>
  </div>

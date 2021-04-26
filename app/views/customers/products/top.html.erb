@@ -1,14 +1,46 @@
-<h1>トップページ</h1>
+<div class="container">
+  <div class="row mb-2">
+    <div class="col-12 main-visual mx-auto d-flex align-items-center">
+      <div class="cover-text text-center mx-auto">
+				<p class="text-light font-weight-light h5">
+				  ようこそ、ながのCAKEへ </br></br>
+				  このサイトは、ケーキ販売のECサイトになります。</br></br>
+				  会員でない方も商品の閲覧は可能となっておりますが </br></br>
+				  購入には会員登録が必要になります。
+				</p>
+			</div>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <h2><strong>新着商品</strong></h2>
+  </div>
+  <div class="row">
+    <% @new_arrivals_products.each do |product| %>
+      <div class="col-3 ">
+        <%= link_to product_path(product) do %>
+          <%= attachment_image_tag product, :image, size: '250x250', fallback: "kanban_jyunbi.png", size:'250x250' %>
+          <p class="font-weight-bold text-secondary"><%= product.name %></p>
+          <p class="font-weight-bold text-secondary">￥<%= (product.price*1.1).round.to_s(:delimited, delimiter: ',') %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="row">
+    <div class="col-8 d-flex justify-content-between">
+     <% @categories.each do |category| %>
+		  <%= link_to category_products_path(category) do %>
+			 <p>
+			  <%= category.name %>
+			 </p>
+		  <% end %>
+	   <% end %>      
+    </div>
+    
+    <div class="col-4 d-flex justify-content-end">
+     <p><%= link_to "全ての商品を見る>", products_path %></p>
+    </div>
 
-<% if customer_signed_in? %>
-  <li>
-    <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-  </li>
-<% else %>
-  <li>
-    <%= link_to "新規登録", new_customer_registration_path %>
-  </li>
-  <li>
-    <%= link_to "ログイン", new_customer_session_path %>
-  </li>
-<% end %>
+    
+  </div>
+</div>
